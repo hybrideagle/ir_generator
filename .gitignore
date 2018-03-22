@@ -57,6 +57,14 @@ typings/
 # dotenv environment variables file
 .env
 
+# typescript compiled files
 dist
+
+# Yarn files
 yarn*
 yarn.lock
+
+# ctags files
+.tags
+.tags*
+.tags-swap

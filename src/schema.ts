@@ -1,68 +1,79 @@
-interface Node {
+export interface Node {
   type: string;
+  id?: string;
 }
 
-interface AssignmentPattern {
-    type: 'AssignmentPattern';
+export interface AssignmentOperation extends Node {
+    type: "AssignmentPattern";
     left: Identifier;
     right: Expression;
 }
 
-interface Identifier {
-    type: 'Identifier';
+export interface Identifier extends Node {
+    type: "Identifier";
     name: string;
 }
 
-interface Literal {
-    type: 'Literal';
-    kind: 'int' | 'char';
-    value: string
+export interface Literal extends Node {
+    type: "Literal";
+    kind: "int" | "char";
+    value: string;
 }
 
-interface ArrayExpression {
-    type: 'ArrayExpression';
+////////////////
+// Expressions//
+////////////////
+
+export interface ArrayExpression extends Node {
+    type: "ArrayExpression";
     elements: Expression[];
 }
 
-interface UnaryExpression {
-    type: 'UnaryExpression';
-    operator: '++' | '--' | '!' | '-';
+export interface UnaryExpression extends Node {
+    type: "UnaryExpression";
+    operator: "++" | "--" | "!" | "-";
     argument: Expression;
     prefix: true;
 }
 
-interface BinaryExpression {
-    type: 'BinaryExpression';
-    operator: '+' | '-' | '*' | '/' | '%' |
-        '|' | '^' | '&' | '==' | '!=' |
-        '<' | '>' | '<=' | '>=' ;
+export interface BinaryExpression extends Node {
+    type: "BinaryExpression";
+    operator: "+" | "-" | "*" | "/" | "%" |
+        "|" | "^" | "&" | "==" | "!=" |
+        "<" | ">" | "<=" | ">=" ;
     left: Expression;
     right: Expression;
 }
 
-interface LogicalExpression {
-    type: 'LogicalExpression';
-    operator: '||' | '&&';
+export interface LogicalExpression extends Node {
+    type: "LogicalExpression";
+    operator: "||" | "&&";
     left: Expression;
     right: Expression;
 }
 
-interface ConditionalExpression {
-    type: 'ConditionalExpression';
+export interface ConditionalExpression extends Node {
+    type: "ConditionalExpression";
     test: Expression;
     consequent: Statement;
     alternate?: Statement;
 }
 
-interface AssignmentExpression {
-    type: 'AssignmentExpression';
-    operator: '=' | '*=' | '/=' | '+=' | '-=' ;
+export interface AssignmentExpression extends Node {
+    type: "AssignmentExpression";
+    operator: "=" | "*=" | "/=" | "+=" | "-=" ;
     left: Expression;
     right: Expression;
 }
 
-interface SequenceExpression {
-    type: 'SequenceExpression';
+type Expression = Identifier | Literal |
+    ArrayExpression | UnaryExpression |
+    BinaryExpression | LogicalExpression | ConditionalExpression |
+    AssignmentExpression | SequenceExpression;
+
+
+export interface SequenceExpression extends Node {
+    type: "SequenceExpression";
     expressions: Expression[];
 }
 
@@ -74,105 +85,104 @@ type Statement = BlockStatement | BreakStatement | ContinueStatement |
     VariableDeclaration |
     WhileStatement ;
 
-type Expression = Identifier | Literal |
-    ArrayExpression | UnaryExpression |
-    BinaryExpression | LogicalExpression | ConditionalExpression |
-    AssignmentExpression | SequenceExpression;
-
-interface BlockStatement {
-    type: 'BlockStatement';
-    body: StatementListItem[];
+export interface ExpressionStatement extends Node {
+    type: "ExpressionStatement";
+    expression: Expression;
 }
 
-interface BreakStatement {
-    type: 'BreakStatement';
+
+
+
+export interface BlockStatement extends Node {
+    type: "BlockStatement";
+    body: Statement[];
+}
+
+export interface BreakStatement extends Node {
+    type: "BreakStatement";
     label: Identifier | null;
 }
 
-interface ContinueStatement {
-    type: 'ContinueStatement';
+export interface ContinueStatement extends Node {
+    type: "ContinueStatement";
     label: Identifier | null;
 }
 
-interface DoWhileStatement {
-    type: 'DoWhileStatement';
+export interface DoWhileStatement extends Node {
+    type: "DoWhileStatement";
     body: Statement;
     test: Expression;
 }
 
-interface ExpressionStatement {
-    type: 'ExpressionStatement';
-    expression: Expression;
+
+export interface EmptyStatement extends Node {
+    type: "EmptyStatement";
 }
 
-interface EmptyStatement {
-    type: 'EmptyStatement';
-}
-
-interface ForStatement {
-    type: 'ForStatement';
+export interface ForStatement extends Node {
+    type: "ForStatement";
     init: Expression | VariableDeclaration | null;
     test: Expression | null;
     update: Expression | null;
     body: Statement;
 }
 
-interface IfStatement {
-    type: 'IfStatement';
+export interface IfStatement extends Node {
+    type: "IfStatement";
     test: Expression;
     consequent: Statement;
     alternate?: Statement;
 }
 
-interface IfGotoStatement {
-    type: 'IfGotoStatement';
+export interface IfGotoStatement extends Node {
+    type: "IfGotoStatement";
     test: Expression;
     label: string;
 }
 
-interface LabeledStatement {
-    type: 'LabeledStatement';
+export interface LabeledStatement extends Node {
+    type: "LabeledStatement";
     label: string;
     body: Statement;
 }
 
-interface ReturnStatement {
-    type: 'ReturnStatement';
+export interface ReturnStatement extends Node {
+    type: "ReturnStatement";
     argument: Expression | null;
 }
 
-interface SwitchStatement {
-    type: 'SwitchStatement';
+export interface SwitchStatement extends Node {
+    type: "SwitchStatement";
     discriminant: Expression;
     cases: SwitchCase[];
     default: Statement[];
 }
 
-interface SwitchCase {
-    type: 'SwitchCase';
+export interface SwitchCase extends Node {
+    type: "SwitchCase";
     test: Expression;
     consequent: Statement[];
 }
 
-interface VariableDeclaration {
-    type: 'VariableDeclaration';
+export interface VariableDeclaration extends Node {
+    type: "VariableDeclaration";
     declarations: VariableDeclarator[];
-    kind: 'int' | 'char';
+    kind: "int" | "char";
 }
 
-interface VariableDeclarator {
-    type: 'VariableDeclarator';
-    id: Identifier;
+export interface VariableDeclarator extends Node {
+    type: "VariableDeclarator";
+    var_id: Identifier;
     init: Expression | null;
 }
 
-interface WhileStatement {
-    type: 'WhileStatement';
+export interface WhileStatement extends Node {
+    type: "WhileStatement";
     test: Expression;
     body: Statement;
 }
 
-interface GotoStatement {
-    type: 'GotoStatement';
+export interface GotoStatement extends Node {
+    type: "GotoStatement";
     label: string;
 }
