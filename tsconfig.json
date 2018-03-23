@@ -2,7 +2,9 @@
     "files": [
         "src/main.ts",
         "src/schema.ts",
-        "src/convert.ts"
+        "src/utils.ts",
+        "src/convert.ts",
+        "src/convert-data.ts"
     ],
     "compilerOptions": {
         "outDir": "./dist",
