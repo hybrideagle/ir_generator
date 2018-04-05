@@ -1,5 +1,5 @@
 var labelCount = 0;
-var typeCount = 0;
+var tempCount = 0;
 /**
  *  Create a new label
  *  @param  name Custom label name, optional
@@ -14,9 +14,9 @@ function GenLabel(name) {
 
 function genTemp(name) {
     if (name == null)
-        this.name = `L${tempCount++}`;
+        return `t${tempCount++}`;
     else
-        this.name = name;
+        return name;
     }
 
 function gen(...args) {
