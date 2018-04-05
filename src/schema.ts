@@ -181,8 +181,3 @@ export interface GotoStatement {
     type: "GotoStatement";
     label: string;
 }
-
-export interface Sequence {
-    type: "Sequence";
-    body: null;  //this should be set to an array of nodes
-}
