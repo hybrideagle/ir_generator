@@ -104,7 +104,7 @@ function convertAll(node) {
             node = convertExpressionStatement(node);
             break;
         default:
-            console.log(`[Warning] Transforming ${node.type} not supported`);
+            console.log(`[Warning] ${node.type} transformation not supported`);
     }
 }
 
