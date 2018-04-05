@@ -1,0 +1,64 @@
+{
+  "type":"ForStatement",
+  "init":{
+    "type":"AssignmentExpression",
+    "operator":"=",
+    "left":{
+      "type":"Identifier",
+      "name":"a"
+    },
+    "right":{
+      "type": "Literal",
+      "kind": "int",
+      "value": "10"
+    }
+  },
+  "test": {
+      "type": "BinaryExpression",
+      "left": {
+          "type":"Identifier",
+          "name": "a"
+      },
+      "right": {
+          "type": "Literal",
+          "kind": "int",
+          "value": "10"
+      },
+      "operator": "<"
+  },
+  "update":{
+    "type":"UnaryExpression",
+    "operator":"++",
+    "argument":{
+      "type":"Identifier",
+      "name":"a"
+    },
+    "prefix":"false"
+    },
+  "body":{
+    "type": "AssignmentExpression",
+    "operator": "=",
+    "left": {
+        "type":"Identifier",
+        "name": "a"
+    },
+    "right": {
+        "type": "ExpressionStatement",
+        "expression": {
+            "type":"BinaryExpression",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right":{
+                "type": "Literal",
+                "kind": "int",
+                "value": "10"
+            },
+            "operator": "+"
+        }
+    }
+
+  }
+
+}

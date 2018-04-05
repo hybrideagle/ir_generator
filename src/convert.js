@@ -11,40 +11,23 @@ import {GenLabel,genTemp} from "./utils";
 function convertAssignExpression(node)
 {
   assert.ok(node.type=='AssignmentExpression');
-  
-  if(node.right.expression.type == "BinaryExpression"){
-      // Split up the binary expression
-  }
+  let tempBlock={
+    type:"SingleAssignmentExpression",
+    target:genTemp(),
+    operand1:node.right
+  };
 
-  if(node.right.expression.type == "UnaryExpression"){
-      
-  }
-  
-
+  let assignblock={
+    type:"SingleAssignmentExpression",
+    target:node.left,
+    operand1:tempBlock.target
+  };
   return {
       type: "Sequence",
-      statements = []
+      statements: [tempBlock,assignblock]
   }
+
 }
-
-function convertExpressionStatement(node){
-    assert.ok(node.type == 'ExpressionStatement');
-
-    switch(node.expression.type){
-        case "BinaryExpression": break;
-        case "UnaryExpression": break;
-        case "AssignmentExpression": break;
-        default: console.log("Failure");
-                 break;
-    }
-
-
-    return {
-        type: "Sequence",
-        statements = []
-    }
-}
-
 
 function convertWhileStatement(node) {
 
@@ -104,7 +87,7 @@ function convertAll(node) {
             node = convertWhileStatement(node);
             break;
         case "ForStatement":
-            node = convertWhileStatement(node);
+            node = convertForStatement(node);
             break;
         case "IfStatement":
             node = convertWhileStatement(node);
