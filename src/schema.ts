@@ -77,7 +77,7 @@ export interface SequenceExpression {
     expressions: Expression[];
 }
 
-type Statement = BlockStatement | BreakStatement | ContinueStatement |
+export type Statement = BlockStatement | BreakStatement | ContinueStatement |
     DoWhileStatement | EmptyStatement |
     ExpressionStatement | ForStatement |
     IfStatement |
@@ -140,7 +140,7 @@ export interface IfGotoStatement {
     label: string;
 }
 
-export interface LabeledStatement {
+export interface sedStatement {
     type: "LabeledStatement";
     label: string;
     body: Statement;
