@@ -9,13 +9,15 @@
   "devDependencies": {
     "@types/node": "^9.4.7",
     "gulp": "^3.9.1",
-    "gulp-typescript": "^4.0.1",
-    "typescript": "^2.7.2"
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   },
   "scripts": {
-    "start": "tsc && node dist/main.js"
+    "build": "gulp",
+    "start": "npm run-script build; node dist/main.js"
   },
   "dependencies": {
+    "gulp-js-import": "^1.0.6",
     "tree-model": "^1.0.6"
   }
 }
