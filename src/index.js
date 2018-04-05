@@ -19,4 +19,4 @@ console.log(JSON.stringify(n, null, 4));
 console.log("\nOutput(short form):");
 console.log(n);
 
-console.log(n.statements[0].body);
+//console.log(n.statements[0].body);
