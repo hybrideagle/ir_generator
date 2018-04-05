@@ -109,3 +109,4 @@ function convertAll(node) {
 }
 
 exports.convertWhileStatement = convertWhileStatement;
+exports.convertAssignExpression = convertAssignExpression;
