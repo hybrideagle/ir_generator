@@ -38,3 +38,4 @@ console.log(as_n);
 
 console.log(as_n.statements[0]);
 
+//console.log(n.statements[0].body);
