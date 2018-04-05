@@ -11,8 +11,41 @@ import {GenLabel,genTemp} from "./utils";
 function convertAssignExpression(node)
 {
   assert.ok(node.type=='AssignmentExpression');
-  let
+  
+  if(node.right.expression.type == "BinaryExpression"){
+      // Split up the binary expression
+  }
+
+  if(node.right.expression.type == "UnaryExpression"){
+      
+  }
+  
+
+  return {
+      type: "Sequence",
+      statements = []
+  }
 }
+
+function convertExpressionStatement(node){
+    assert.ok(node.type == 'ExpressionStatement');
+
+    switch(node.expression.type){
+        case "BinaryExpression": break;
+        case "UnaryExpression": break;
+        case "AssignmentExpression": break;
+        default: console.log("Failure");
+                 break;
+    }
+
+
+    return {
+        type: "Sequence",
+        statements = []
+    }
+}
+
+
 function convertWhileStatement(node) {
 
     assert.ok(node.type == 'WhileStatement');
@@ -80,7 +113,7 @@ function convertAll(node) {
             node =convertAssignExpression(node);
             break;
         case "ExpressionStatement":
-            node = convertWhileStatement(node);
+            node = convertExpressionStatement(node);
             break;
         default:
             console.log(`[Warning] Transforming ${node.type} not supported`);
