@@ -101,7 +101,7 @@ function convertAll(node) {
             node = convertAssignExpression(node);
             break;
         case "ExpressionStatement":
-            node = convertWhileStatement(node);
+            node = convertExpressionStatement(node);
             break;
         default:
             console.log(`[Warning] Transforming ${node.type} not supported`);
