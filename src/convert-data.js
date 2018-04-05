@@ -1,8 +1,7 @@
 const assert = require("assert");
 const TreeModel = require("tree-model");
-import {Node} from "./schema";
-// Convert the input JSON to a TreeModel object
-export function jsonToTreemodel(n) {
+    // Convert the input JSON to a TreeModel object
+function jsonToTreemodel(n) {
     // First we add the children and id properties to each object
     addProperties(n);
     // Now we build and return the TreeModel

@@ -31,3 +31,6 @@ function gen(...args) {
     );
     return args.join("");
 }
+
+exports.genTemp = genTemp;
+exports.GenLabel = GenLabel;

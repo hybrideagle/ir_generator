@@ -1,37 +1,42 @@
 const assert = require("assert");
 const TreeModel = require("tree-model");
-import {Node, WhileStatement,AssignmentExpression} from "./schema";
-import {GenLabel,genTemp} from "./utils";
+var path = require('path');
+//import {Node, WhileStatement, AssignmentExpression} from "./schema";
+//import {GenLabel, genTemp} from "./utils";
+var utils = require(path.resolve(__dirname, 'utils.js'));
+var GenLabel = utils.GenLabel;
+var genTemp = utils.genTemp;
+
 /**
  *  Coverts a node to a simplified series of nodes
  *  @param   node The node to convert(JS object)
  *  @return       An array of nodes repesenting the simplified construct
  */
 
-function convertAssignExpression(node)
-{
-  assert.ok(node.type=='AssignmentExpression');
-  let tempBlock={
-    type:"SingleAssignmentExpression",
-    target:genTemp(),
-    operand1:node.right
-  };
+function convertAssignExpression(node) {
+    assert.ok(node.type == 'AssignmentExpression');
 
-  let assignblock={
-    type:"SingleAssignmentExpression",
-    target:node.left,
-    operand1:tempBlock.target
-  };
-  return {
-      type: "Sequence",
-      statements: [tempBlock,assignblock]
-  }
+    let tempBlock = {
+        type: "SingleAssignmentExpression",
+        target: genTemp(),
+        operand1: node.right
+    };
+
+    let assignblock = {
+        type: "SingleAssignmentExpression",
+        target: node.left,
+        operand1: tempBlock.target
+    };
+    return {
+        type: "Sequence",
+        statements: [tempBlock, assignblock]
+    }
 
 }
 
 function convertWhileStatement(node) {
 
-    assert.ok(node.type == 'WhileStatement');
+    assert.ok(node.type == 'WhileStatement', node.type);
 
     let ifGuard = {
         type: "LabeledStatement",
@@ -93,7 +98,7 @@ function convertAll(node) {
             node = convertWhileStatement(node);
             break;
         case "AssignmentExpression":
-            node =convertAssignExpression(node);
+            node = convertAssignExpression(node);
             break;
         case "ExpressionStatement":
             node = convertWhileStatement(node);
@@ -102,3 +107,5 @@ function convertAll(node) {
             console.log(`[Warning] Transforming ${node.type} not supported`);
     }
 }
+
+exports.convertWhileStatement = convertWhileStatement;
