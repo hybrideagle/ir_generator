@@ -1,4 +1,4 @@
-import {Expression} from "./schema";
+import { Expression } from "./schema";
 
 export interface IfGotoStatement {
     type: "IfGotoStatement";

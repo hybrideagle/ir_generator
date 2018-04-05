@@ -135,7 +135,7 @@ export interface IfStatement {
 }
 
 
-export interface labeledStatement {
+export interface LabeledStatement {
     type: "LabeledStatement";
     label: string;
     body: Statement;

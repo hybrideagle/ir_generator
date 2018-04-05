@@ -9,7 +9,7 @@ import {GenLabel} from "./utils";
  */
 function convertWhileStatement(node) {
 
-    assert.ok(node.type=='WhileStatement');
+    assert.ok(node.type == 'WhileStatement');
 
     let ifGuard = {
         type: "LabeledStatement",
@@ -73,5 +73,7 @@ function convertAll(node) {
         case "ExpressionStatement":
             node = convertWhileStatement(node);
             break;
+        default:
+            console.log(`[Warning] Transforming ${node.type} not supported`);
     }
 }
