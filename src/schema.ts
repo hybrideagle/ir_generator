@@ -126,6 +126,11 @@ export interface ForStatement {
     update: Expression | null;
     body: Statement;
 }
+export interface WhileStatement {
+    type: "WhileStatement";
+    test: Expression;
+    body: Statement;
+}
 
 export interface IfStatement {
     type: "IfStatement";
@@ -171,11 +176,7 @@ export interface VariableDeclarator {
     init: Expression | null;
 }
 
-export interface WhileStatement {
-    type: "WhileStatement";
-    test: Expression;
-    body: Statement;
-}
+
 
 export interface GotoStatement {
     type: "GotoStatement";

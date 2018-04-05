@@ -11,8 +11,24 @@ import {GenLabel,genTemp} from "./utils";
 function convertAssignExpression(node)
 {
   assert.ok(node.type=='AssignmentExpression');
-  let
+  let tempBlock={
+    type:"SingleAssignmentExpression",
+    target:genTemp(),
+    operand1:node.right
+  };
+
+  let assignblock={
+    type:"SingleAssignmentExpression",
+    target:node.left,
+    operand1:tempBlock.target
+  };
+  return {
+      type: "Sequence",
+      statements: [tempBlock,assignblock]
+  }
+
 }
+
 function convertWhileStatement(node) {
 
     assert.ok(node.type == 'WhileStatement');
@@ -71,7 +87,7 @@ function convertAll(node) {
             node = convertWhileStatement(node);
             break;
         case "ForStatement":
-            node = convertWhileStatement(node);
+            node = convertForStatement(node);
             break;
         case "IfStatement":
             node = convertWhileStatement(node);
