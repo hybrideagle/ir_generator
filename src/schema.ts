@@ -66,7 +66,7 @@ export interface AssignmentExpression {
     right: Expression;
 }
 
-type Expression = Identifier | Literal |
+export type Expression = Identifier | Literal |
     ArrayExpression | UnaryExpression |
     BinaryExpression | LogicalExpression | ConditionalExpression |
     AssignmentExpression | SequenceExpression;
@@ -134,13 +134,8 @@ export interface IfStatement {
     alternate?: Statement;
 }
 
-export interface IfGotoStatement {
-    type: "IfGotoStatement";
-    test: Expression;
-    label: string;
-}
 
-export interface sedStatement {
+export interface labeledStatement {
     type: "LabeledStatement";
     label: string;
     body: Statement;
@@ -185,4 +180,9 @@ export interface WhileStatement {
 export interface GotoStatement {
     type: "GotoStatement";
     label: string;
+}
+
+export interface Sequence {
+    type: "Sequence";
+    body: null;  //this should be set to an array of nodes
 }

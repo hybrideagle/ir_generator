@@ -7,18 +7,17 @@ var typeCount = 0;
  *  @return      A string
  */
 function GenLabel(name){
-    if(!name)
+    if(name == null)
       return `L${labelCount++}`;
     else
       return name;
 }
 
 function genTemp(name) {
-    if(!name)
+    if(name == null)
       this.name = `L${tempCount++}`;
     else
       this.name = name;
-  }
 }
 
 
