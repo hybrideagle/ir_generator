@@ -1,12 +1,18 @@
 const assert = require("assert");
 const TreeModel = require("tree-model");
-import {Node, WhileStatement} from "./schema";
-import {GenLabel} from "./utils";
+import {Node, WhileStatement,AssignmentExpression} from "./schema";
+import {GenLabel,genTemp} from "./utils";
 /**
  *  Coverts a node to a simplified series of nodes
  *  @param   node The node to convert(JS object)
  *  @return       An array of nodes repesenting the simplified construct
  */
+
+function convertAssignExpression(node)
+{
+  assert.ok(node.type=='AssignmentExpression');
+  let
+}
 function convertWhileStatement(node) {
 
     assert.ok(node.type=='WhileStatement');
@@ -69,6 +75,9 @@ function convertAll(node) {
             break;
         case "IfStatement":
             node = convertWhileStatement(node);
+            break;
+        case "AssignmentExpression":
+            node =convertAssignExpression(node);
             break;
         case "ExpressionStatement":
             node = convertWhileStatement(node);
