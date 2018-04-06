@@ -4,10 +4,11 @@ var path = require("path");
 var convertWhileStatement = require(path.resolve(__dirname, 'convert.js')).convertWhileStatement;
 //var jsonToTreemodel = require("./convert-data.js").jsonToTreemodel;
 var convertAssignExpression = require(path.resolve(__dirname, 'convert.js')).convertAssignExpression;
+
+// While loop converter test
+
 const input_file = readFileSync("./input_examples/while_loop.json", "utf-8");
-const assign_input_file = readFileSync("./input_examples/assign_expr.json", "utf-8");
 const input = JSON.parse(input_file);
-const assign_input = JSON.parse(assign_input_file);
 console.log("Read input:");
 console.log(input);
 //console.log("TreeModel:");
@@ -20,6 +21,13 @@ console.log(JSON.stringify(n, null, 4));
 
 console.log("\nOutput(short form):");
 console.log(n);
+
+
+// Assignment expression converter test
+
+
+const assign_input_file = readFileSync("./input_examples/assign_expr.json", "utf-8");
+const assign_input = JSON.parse(assign_input_file);
 
 console.log("\n\nRead assign input:");
 console.log(assign_input);

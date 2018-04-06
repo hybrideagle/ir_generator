@@ -12,7 +12,6 @@ var genTemp = utils.genTemp;
  *  @param   node The node to convert(JS object)
  *  @return       An array of nodes repesenting the simplified construct
  */
-
 function convertAssignExpression(node) {
     assert.ok(node.type == 'AssignmentExpression');
 
