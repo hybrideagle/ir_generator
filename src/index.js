@@ -21,9 +21,7 @@ console.log(JSON.stringify(n, null, 4));
 console.log("\nOutput(short form):");
 console.log(n);
 
-console.log(n.statements[0].body);
-
-console.log("Read assign input:");
+console.log("\n\nRead assign input:");
 console.log(assign_input);
 //console.log("TreeModel:");
 //console.log(jsonToTreemodel(JSON.parse(input)));
