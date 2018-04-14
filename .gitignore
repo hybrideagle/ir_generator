@@ -58,7 +58,7 @@ typings/
 .env
 
 # typescript compiled files
-dist
+# dist
 
 # Yarn files
 yarn*
