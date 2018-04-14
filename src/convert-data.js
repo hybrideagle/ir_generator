@@ -1,7 +1,7 @@
-const assert = require("assert");
-const TreeModel = require("tree-model");
+import assert from "assert";
+import {Treant} from "treant-js";
     // Convert the input JSON to a TreeModel object
-function jsonToTreemodel(n) {
+export function createTreantObject(n) {
     // First we add the children and id properties to each object
     addProperties(n);
     // Now we build and return the TreeModel
