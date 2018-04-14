@@ -1,20 +1,14 @@
-const assert = require("assert");
-const TreeModel = require("tree-model");
-var path = require('path');
-//import {Node, WhileStatement, AssignmentExpression} from "./schema";
-//import {GenLabel, genTemp} from "./utils";
-var utils = require(path.resolve(__dirname, 'utils.js'));
-var GenLabel = utils.GenLabel;
-var genTemp = utils.genTemp;
+import assert from "assert";
+import {path} from 'path';
+import {GenLabel, genTemp} from "./utils";
 
 /**
  *  Coverts a node to a simplified series of nodes
  *  @param   node The node to convert(JS object)
  *  @return       An array of nodes repesenting the simplified construct
  */
-
-function convertAssignExpression(node) {
-    assert.ok(node.type == 'AssignmentExpression');
+export function convertAssignExpression(node) {
+    assert.ok(node.type == 'AssignmentExpression',`invalid node type(Assign expected),got ${node.type}`);
 
     let tempBlock = {
         type: "SingleAssignmentExpression",
@@ -34,9 +28,9 @@ function convertAssignExpression(node) {
 
 }
 
-function convertWhileStatement(node) {
+export function convertWhileStatement(node) {
 
-    assert.ok(node.type == 'WhileStatement', node.type);
+    assert.ok(node.type == 'WhileStatement', node.type, "invalid node type(Assign expected)");
 
     let ifGuard = {
         type: "LabeledStatement",
@@ -75,7 +69,7 @@ function convertWhileStatement(node) {
     }
 }
 
-function convertAll(node) {
+export function convertAll(node) {
     if (node == null)
         return;
 
@@ -107,6 +101,3 @@ function convertAll(node) {
             console.log(`[Warning] ${node.type} transformation not supported`);
     }
 }
-
-exports.convertWhileStatement = convertWhileStatement;
-exports.convertAssignExpression = convertAssignExpression;
