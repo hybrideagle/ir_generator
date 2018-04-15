@@ -1,0 +1,28 @@
+#content-container {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+}
+
+#container {
+    text-align:center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.chart {
+    width: 50%;
+    border: solid blue;
+}
+
+.toolbar {
+    width: 100%;
+    border: solid black;
+}
+
+.icg-pane {
+    width: 50%;
+    border: solid red;
+}
