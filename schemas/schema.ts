@@ -4,7 +4,7 @@ export interface Node {
 }
 
 export interface AssignmentOperation{
-    type: "AssignmentPattern";
+    type: "AssignmentOperation";
     left: Identifier;
     right: Expression;
 }
@@ -110,7 +110,7 @@ export interface ContinueStatement {
 
 export interface DoWhileStatement {
     type: "DoWhileStatement";
-    body: Statement;
+    body: BlockStatement;
     test: Expression;
 }
 
