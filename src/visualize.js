@@ -1,5 +1,17 @@
 import assert from "assert";
 import {Treant} from "treant-js";
+
+
+export function draw(node) {
+    var chart_config = getChartConfig(node);
+    console.log(chart_config);
+    new Treant(chart_config);
+
+}
+
+
+
+
 // Convert the input JSON to a TreeModel object
 export function getChartConfig(node) {
     return {
