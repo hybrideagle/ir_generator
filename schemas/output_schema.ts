@@ -11,9 +11,11 @@ export interface GotoStatement {
     label: string;
 }
 
+type Statement = GotoStatement | IfGotoStatement | AssignmentExpression | AssignmentExpressionSequence;
+
 export interface Sequence {
     type: "Sequence";
-    body: null;  //this should be set to an array of nodes
+    body: Statement[];  //this should be set to an array of nodes
 }
 
 export interface BinaryAssignmentExpression {
@@ -36,4 +38,15 @@ export interface AssignmentExpressionSequence {
     type: "AssignmentExpressionSequence";
     expressions: AssignmentExpression[];
     result: string; /**Variable where the result is stored*/
+}
+
+export interface Identifier {
+    type: "Identifier";
+    name: string;
+}
+
+export interface Literal {
+    type: "Literal";
+    kind: "int" | "char";
+    value: string;
 }

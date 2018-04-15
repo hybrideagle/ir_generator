@@ -29,9 +29,8 @@
                     "name": "a"
                 },
                 "right":{
-                    "type": "Literal",
-                    "kind": "int",
-                    "value": "10"
+                    "type": "Identifier",
+                    "name": "x"
                 },
                 "operator": "+"
             }
