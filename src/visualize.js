@@ -103,7 +103,7 @@ function getNodeStructure(node) {
                 text: {
                     name: node.type
                 },
-                children: node.expressions.map(e => getNodeStructure(e))
+                children: node.statements.map(e => getNodeStructure(e))
             };
         case "ExpressionStatement":
             return {
@@ -181,6 +181,26 @@ function getNodeStructure(node) {
                     getNodeStructure(node.alternative)
                 ]
             };
+
+            //Addition here
+            case "IfGotoStatement":
+                return {
+                    text: {
+                        name: node.type
+                    },
+                    children: [
+                      {
+                        text:{
+                          name:`test: ${node.test}`
+                        },
+                          text: {
+                              name: `label: ${node.label}`
+                          }
+                      },
+
+                    ]
+                };
+
         case "LabeledStatement":
             return {
                 text: {

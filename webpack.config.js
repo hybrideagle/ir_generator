@@ -10,6 +10,8 @@ module.exports = {
     devServer: {
         contentBase: [path.join(__dirname, "dist"),path.join(__dirname, "input_examples")],
         port: 9000
+    },
+    node: {
+      fs: 'empty'
     }
-
 };

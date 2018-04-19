@@ -74,7 +74,7 @@ export type Expression = Identifier | Literal |
 
 export interface SequenceExpression {
     type: "SequenceExpression";
-    expressions: Expression[];
+    statements: Expression[];
 }
 
 export type Statement = BlockStatement | BreakStatement | ContinueStatement |
@@ -136,7 +136,7 @@ export interface IfStatement {
     type: "IfStatement";
     test: Expression;
     consequent: Statement;
-    alternate?: Statement;
+    alternative: Statement;
 }
 
 

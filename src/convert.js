@@ -7,6 +7,98 @@ import {GenLabel, genTemp} from "./utils";
  *  @param   node The node to convert(JS object)
  *  @return       An array of nodes repesenting the simplified construct
  */
+
+ function convertIfElseStatement(node) {
+
+     assert.ok(node.type == 'IfElseStatement', node.type);
+
+     let ifGuard = {
+         type: "LabeledStatement",
+         body: {
+             type: "IfGotoStatement",
+             test: node.test,
+             label: null
+         },
+         label: GenLabel()
+     };
+     let topGoto = {
+         type: "GotoStatement",
+         label: null
+     }
+     let body = {
+         type: "LabeledStatement",
+         label: GenLabel(),
+         body: node.body
+     }
+
+     let elseBody = {
+         type: "LabeledStatement",
+         label: GenLabel(),
+         body: node.body
+     }
+     ifGuard.body.label = body.label;
+     topGoto.label = elseBody.label;
+     let loopExit = {
+         type: 'LabeledStatement',
+         label: GenLabel(),
+         body: {
+             type: "EmptyStatement"
+         }
+     }
+
+     let endGoto = {
+         type: "GotoStatement",
+         label: loopExit.label
+     }
+     return {
+         type: "SequenceExpression",
+         statements: [ifGuard, topGoto, body, endGoto, elseBody, endGoto, loopExit]
+     }
+ }
+
+ export function convertDoWhileStatement(node) {
+
+     assert.ok(node.type == 'DoWhileStatement', node.type, "invalid node type(Assign expected)");
+
+     let ifGuard = {
+         type: "LabeledStatement",
+         body: {
+             type: "IfGotoStatement",
+             test: node.test,
+             label: null
+         },
+         label: GenLabel()
+     };
+     let topGoto = {
+         type: "GotoStatement",
+         label: null
+     }
+     let body = {
+         type: "LabeledStatement",
+         label: GenLabel(),
+         body: node.body
+     }
+     ifGuard.body.label = body.label;
+     let endGoto = {
+         type: "GotoStatement",
+         label: ifGuard.label
+     }
+     let loopExit = {
+         type: 'LabeledStatement',
+         label: GenLabel(),
+         body: {
+             type: "EmptyStatement"
+         }
+     }
+
+     return {
+         type: "Sequence",
+         statements: [ body, ifGuard, topGoto, endGoto, loopExit]
+     }
+ }
+
+
+
 export function convertAssignExpression(node) {
     assert.ok(node.type == 'AssignmentExpression',`invalid node type(Assign expected),got ${node.type}`);
 
@@ -64,7 +156,7 @@ export function convertWhileStatement(node) {
     }
 
     return {
-        type: "Sequence",
+        type: "SequenceExpression",
         statements: [ifGuard, topGoto, body, endGoto, loopExit]
     }
 }
