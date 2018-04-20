@@ -38,6 +38,12 @@ import {GenLabel, genTemp} from "./utils";
      }
      ifGuard.body.label = body.label;
      topGoto.label = elseBody.label;
+
+     let endGoto = {
+         type: "GotoStatement",
+         label: null
+     }
+
      let loopExit = {
          type: 'LabeledStatement',
          label: GenLabel(),
@@ -45,11 +51,10 @@ import {GenLabel, genTemp} from "./utils";
              type: "EmptyStatement"
          }
      }
+     endGoto.label = loopExit.label;
 
-     let endGoto = {
-         type: "GotoStatement",
-         label: loopExit.label
-     }
+     topGoto.label = loopExit.label;
+
      return {
          type: "SequenceExpression",
          statements: [ifGuard, topGoto, body, endGoto, elseBody, endGoto, loopExit]
@@ -154,6 +159,7 @@ export function convertWhileStatement(node) {
             type: "EmptyStatement"
         }
     }
+    topGoto.label = loopExit.label;
 
     return {
         type: "SequenceExpression",
@@ -162,16 +168,8 @@ export function convertWhileStatement(node) {
 }
 
 export function convertAll(node) {
-    if (node == null)
+    if (node == null || typeof node == 'undefined')
         return;
-
-    let props = node.getOwnPropertyNames();
-    props.forEach(prop => {
-        let n = node[prop];
-        if (typeof n !== null && (typeof n === 'object' || typeof n == 'array'))
-            node[prop] = convertAll(node[prop]);
-        }
-    );
 
     switch (node.type) {
         case "WhileStatement":
@@ -192,4 +190,5 @@ export function convertAll(node) {
         default:
             console.log(`[Warning] ${node.type} transformation not supported`);
     }
+    return node;
 }
