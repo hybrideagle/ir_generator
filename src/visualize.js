@@ -1,16 +1,12 @@
 import assert from "assert";
 import {Treant} from "treant-js";
 
-
 export function draw(node) {
     var chart_config = getChartConfig(node);
     console.log(chart_config);
     new Treant(chart_config);
 
 }
-
-
-
 
 // Convert the input JSON to a TreeModel object
 export function getChartConfig(node) {
@@ -39,14 +35,14 @@ function getNodeStructure(node) {
         case "Identifier":
             return {
                 text: {
-                    name: `Identifier(${node.name})`
+                    name: `${node.name}`
                 }
             };
 
         case "Literal":
             return {
                 text: {
-                    name: `Literal(${node.value})`
+                    name: `${node.value}`
                 }
             };
 
@@ -183,23 +179,22 @@ function getNodeStructure(node) {
             };
 
             //Addition here
-            case "IfGotoStatement":
-                return {
-                    text: {
-                        name: node.type
-                    },
-                    children: [
-                      {
-                        text:{
-                          name:`test: ${node.test}`
+        case "IfGotoStatement":
+            return {
+                text: {
+                    name: node.type
+                },
+                children: [
+                    {
+                        text: {
+                            name: `test: ${node.test}`
                         },
-                          text: {
-                              name: `label: ${node.label}`
-                          }
-                      },
-
-                    ]
-                };
+                        text: {
+                            name: `label: ${node.label}`
+                        }
+                    }
+                ]
+            };
 
         case "LabeledStatement":
             return {
