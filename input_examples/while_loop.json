@@ -3,7 +3,7 @@
     "test": {
         "type": "BinaryExpression",
         "left": {
-            "type":"Identifier",
+            "type": "Identifier",
             "name": "a"
         },
         "right": {
@@ -17,23 +17,20 @@
         "type": "AssignmentExpression",
         "operator": "=",
         "left": {
-            "type":"Identifier",
+            "type": "Identifier",
             "name": "a"
         },
         "right": {
-            "type": "ExpressionStatement",
-            "expression": {
-                "type":"BinaryExpression",
-                "left": {
-                    "type": "Identifier",
-                    "name": "a"
-                },
-                "right":{
-                    "type": "Identifier",
-                    "name": "x"
-                },
-                "operator": "+"
-            }
+            "type": "BinaryExpression",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right": {
+                "type": "Identifier",
+                "name": "x"
+            },
+            "operator": "+"
         }
     }
 }

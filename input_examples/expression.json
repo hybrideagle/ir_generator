@@ -1,10 +1,10 @@
 {
-      "type": "Expression",
-      "expression": {
-          "type":"BinaryExpression",
-          "left": {
-              "type": "BinaryExpression",
-              "left": {
+    "type": "Expression",
+    "expression": {
+        "type": "BinaryExpression",
+        "left": {
+            "type": "BinaryExpression",
+            "left": {
                 "type": "BinaryExpression",
                 "left": {
                     "type": "Identifier",
@@ -15,19 +15,17 @@
                     "type": "Identifier",
                     "name": "x2"
                 }
-              },
-              "operator": "+",
-              "right": {
+            },
+            "operator": "+",
+            "right": {
                 "type": "Identifier",
                 "name": "x3"
-              }
-          },
-          "operator": "+",
-          "right": {
-                "type": "Identifier",
-                "name": "x4"
             }
-          },
-
-      }
+        },
+        "operator": "+",
+        "right": {
+            "type": "Identifier",
+            "name": "x4"
+        }
+    }
 }
