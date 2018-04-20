@@ -1,4 +1,4 @@
-import {convertWhileStatement, convertAssignExpression, convertSingle} from './convert';
+import {convertWhileStatement, convertAssignExpression, convertAll} from './convert';
 //import while_loop from '../input_examples/while_loop.json';
 import while_loop from '../input_examples/while_loop.json';
 import assign_expr from '../input_examples/assign_expr.json';
@@ -21,7 +21,7 @@ import {getChartConfig} from './visualize'
         };
         console.log("File has been created");
     });*/
-let output = convertSingle(while_loop);
+let output = convertAll(while_loop);
 //let output = while_loop;
 var chart_config = getChartConfig(output);
 console.log(JSON.stringify(chart_config, null,  2));
