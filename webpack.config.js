@@ -8,10 +8,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
-        contentBase: [path.join(__dirname, "dist"),path.join(__dirname, "input_examples")],
+        contentBase: [
+            path.join(__dirname, "dist"),
+            path.join(__dirname, "input_examples"),
+            path.join(__dirname, "static")
+        ],
         port: 9000
     },
     node: {
-      fs: 'empty'
+        fs: 'empty'
     }
 };
