@@ -46,16 +46,14 @@ function getNodeStructure(node) {
                 }
             };
 
-        case "AssignmentOperation":
+        case "SingleAssignmentExpression":
             return {
                 text: {
-                    name: {
-                        name: node.type
-                    }
+                    name: node.type
                 },
                 children: [
-                    getNodeStructure(node.left),
-                    getNodeStructure(node.right)
+                    getNodeStructure(node.target),
+                    getNodeStructure(node.operand1)
                 ]
             };
         case "ArrayExpression":
@@ -93,7 +91,14 @@ function getNodeStructure(node) {
                     getNodeStructure(node.right)
                 ]
             };
-
+        case "Sequence":
+            // console.log(node);
+            return {
+                text: {
+                    name: node.type
+                },
+                children: node.statements.map(e => getNodeStructure(e))
+            };
         case "SequenceExpression":
             return {
                 text: {
@@ -133,8 +138,8 @@ function getNodeStructure(node) {
                     name: node.type
                 },
                 children: [
-                    getNodeStructure(node.test),
-                    getNodeStructure(node.body)
+                    getNodeStructure(node.body),
+                    getNodeStructure(node.test)
                 ]
             };
         case "EmptyStatement":
@@ -185,10 +190,8 @@ function getNodeStructure(node) {
                     name: node.type
                 },
                 children: [
+                    getNodeStructure(node.test),
                     {
-                        text: {
-                            name: `test: ${node.test}`
-                        },
                         text: {
                             name: `label: ${node.label}`
                         }

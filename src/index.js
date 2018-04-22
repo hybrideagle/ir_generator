@@ -4,8 +4,10 @@ import while_loop from '../input_examples/while_loop.json';
 import assign_expr from '../input_examples/assign_expr.json';
 import for_loop from '../input_examples/for_loop.json';
 import if_else from '../input_examples/if_else.json';
+import do_while from '../input_examples/do_while.json';
 import expression from '../input_examples/expression.json';
-import {getChartConfig} from './visualize'
+import {getChartConfig} from './visualize';
+import {convertNodeObject} from './convertIC';
 
 //Trying to convert the output into a json file
 /* var a=convertWhileStatement(while_loop);
@@ -21,8 +23,14 @@ import {getChartConfig} from './visualize'
         };
         console.log("File has been created");
     });*/
-let output = convertAll(while_loop);
+let output = convertAll(assign_expr);
+// console.log(JSON.stringify(output, null, 2))
+let icout = convertNodeObject(output)
+console.log(icout)
 //let output = while_loop;
 var chart_config = getChartConfig(output);
-console.log(JSON.stringify(chart_config, null,  2));
+// console.log(JSON.stringify(chart_config, null,  2));
 new Treant(chart_config);
+
+document.getElementById('icg-pane').innerText = icout;
+document.getElementById('icg-pane').setAttribute("align","center");

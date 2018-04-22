@@ -13,11 +13,16 @@ function GenLabel(name) {
     }
 
 function genTemp(name) {
-    if (name == null)
-        return `t${tempCount++}`;
-    else
-        return name;
+    let temp = {
+        type: "Identifier",
+        name: null
     }
+    if (name == null)
+        temp.name =`t${tempCount++}`;
+    else
+        temp.name = name;
+    return temp;    
+}
 
 function gen(...args) {
     let output = "";

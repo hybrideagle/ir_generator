@@ -27,7 +27,7 @@ export interface BinaryAssignmentExpression {
 }
 
 export interface SingleAssignmentExpression {
-    type: "BinaryAssignmentExpression";
+    type: "SingleAssignmentExpression";
     target: string;
     operand1: string;
 }
