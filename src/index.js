@@ -8,6 +8,7 @@ import do_while from '../input_examples/do_while.json';
 import expression from '../input_examples/expression.json';
 import {getChartConfig} from './visualize';
 import {convertNodeObject} from './convertIC';
+import {cleanUp} from './intercleanup';
 
 //Trying to convert the output into a json file
 /* var a=convertWhileStatement(while_loop);
@@ -23,12 +24,14 @@ import {convertNodeObject} from './convertIC';
         };
         console.log("File has been created");
     });*/
-let output = convertAll(assign_expr);
+let output = convertAll(if_else);
 // console.log(JSON.stringify(output, null, 2))
-let icout = convertNodeObject(output)
-console.log(icout)
+let cleanInter = cleanUp(output);
+console.log(JSON.stringify(cleanInter, null, 2))
+let icout = convertNodeObject(cleanInter);
+console.log(icout);
 //let output = while_loop;
-var chart_config = getChartConfig(output);
+var chart_config = getChartConfig(if_else);
 // console.log(JSON.stringify(chart_config, null,  2));
 new Treant(chart_config);
 

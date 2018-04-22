@@ -19,7 +19,8 @@ import {GenLabel, genTemp} from "./utils";
              test: node.test,
              label: null
          },
-         label: GenLabel()
+         label: GenLabel(),
+         inherited: false
      };
      let topGoto = {
          type: "GotoStatement",
@@ -28,13 +29,15 @@ import {GenLabel, genTemp} from "./utils";
      let body = {
          type: "LabeledStatement",
          label: GenLabel(),
-         body: convertAll(node.consequent)
+         body: convertAll(node.consequent),
+         inherited: false
      }
 
      let elseBody = {
          type: "LabeledStatement",
          label: GenLabel(),
-         body: convertAll(node.alternative)
+         body: convertAll(node.alternative),
+         inherited: false
      }
      ifGuard.body.label = body.label;
      topGoto.label = elseBody.label;
@@ -49,7 +52,8 @@ import {GenLabel, genTemp} from "./utils";
          label: GenLabel(),
          body: {
              type: "EmptyStatement"
-         }
+         },
+         inherited: false
      }
      endGoto.label = ifelseExit.label;
 
@@ -67,7 +71,8 @@ import {GenLabel, genTemp} from "./utils";
      let body = {
          type: "LabeledStatement",
          label: GenLabel(),
-         body: convertAll(node.body)
+         body: convertAll(node.body),
+         inherited: false
      }
      let ifGuard = {
         type: "IfGotoStatement",
@@ -80,7 +85,8 @@ import {GenLabel, genTemp} from "./utils";
         label: GenLabel(),
         body: {
             type: "EmptyStatement"
-        }
+        },
+        inherited: false
     }
      let endGoto = {
          type: "GotoStatement",
@@ -127,7 +133,8 @@ export function convertWhileStatement(node) {
             test: node.test,
             label: null
         },
-        label: GenLabel()
+        label: GenLabel(),
+        inherited: false
     };
     let topGoto = {
         type: "GotoStatement",
@@ -136,7 +143,8 @@ export function convertWhileStatement(node) {
     let body = {
         type: "LabeledStatement",
         label: GenLabel(),
-        body: convertAll(node.body)
+        body: convertAll(node.body),
+        inherited: false
     }
     ifGuard.body.label = body.label;
     let endGoto = {
@@ -148,7 +156,8 @@ export function convertWhileStatement(node) {
         label: GenLabel(),
         body: {
             type: "EmptyStatement"
-        }
+        },
+        inherited: false
     }
     topGoto.label = loopExit.label;
 

@@ -10,6 +10,7 @@ import {GenLabel, genTemp} from "./utils";
 
 function convertNodeIC(node){
     var generatedIC = "";
+    // console.log(node.type);
     switch(node.type){
         case 'Identifier':
             generatedIC = node.name;
@@ -22,8 +23,10 @@ function convertNodeIC(node){
             ;
             break;
         case 'LabeledStatement':
-            generatedIC = node.label + ": ";
-            generatedIC += '\t';
+            if(!node.inherited){
+                generatedIC = node.label + ": ";
+            }
+            generatedIC += '\n\t';
             generatedIC += convertNodeIC(node.body);
             // console.log("DEBUG:", generatedIC);
             break
@@ -70,7 +73,7 @@ function convertNodeIC(node){
             generatedIC = convertNodeIC(node.left) + " " + node.operator + " " + convertNodeIC(node.right);
             break;
         default:
-            console.log("DEBUG: ", node.type);
+            console.log("DEBUG: ", node);
             generatedIC = "Unsupported";
             break;
     }

@@ -14,21 +14,34 @@
         "operator": "<"
     },
     "consequent": {
-        "type": "AssignmentExpression",
-        "operator": "=",
-        "left": {
-            "type":"Identifier",
-            "name": "a"
+        "type": "WhileStatement",
+        "test": {
+            "type": "BinaryExpression",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right": {
+                "type": "Literal",
+                "kind": "int",
+                "value": "10"
+            },
+            "operator": "<"
         },
-        "right": {
-            "type": "ExpressionStatement",
-            "expression": {
-                "type":"BinaryExpression",
+        "body": {
+            "type": "AssignmentExpression",
+            "operator": "=",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right": {
+                "type": "BinaryExpression",
                 "left": {
                     "type": "Identifier",
                     "name": "a"
                 },
-                "right":{
+                "right": {
                     "type": "Identifier",
                     "name": "x"
                 },
@@ -37,21 +50,34 @@
         }
     },
     "alternative": {
-        "type": "AssignmentExpression",
-        "operator": "=",
-        "left": {
-            "type":"Identifier",
-            "name": "a"
+        "type": "WhileStatement",
+        "test": {
+            "type": "BinaryExpression",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right": {
+                "type": "Literal",
+                "kind": "int",
+                "value": "10"
+            },
+            "operator": ">"
         },
-        "right": {
-            "type": "ExpressionStatement",
-            "expression": {
-                "type":"BinaryExpression",
+        "body": {
+            "type": "AssignmentExpression",
+            "operator": "=",
+            "left": {
+                "type": "Identifier",
+                "name": "a"
+            },
+            "right": {
+                "type": "BinaryExpression",
                 "left": {
                     "type": "Identifier",
                     "name": "a"
                 },
-                "right":{
+                "right": {
                     "type": "Identifier",
                     "name": "x"
                 },
@@ -59,6 +85,4 @@
             }
         }
     }
-
-
 }

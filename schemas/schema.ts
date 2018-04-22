@@ -144,6 +144,7 @@ export interface LabeledStatement {
     type: "LabeledStatement";
     label: string;
     body: Statement;
+    inherited: boolean;
 }
 
 export interface ReturnStatement {
