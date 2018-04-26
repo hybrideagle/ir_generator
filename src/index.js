@@ -6,7 +6,7 @@ import for_loop from '../input_examples/for_loop.json';
 import if_else from '../input_examples/if_else.json';
 import do_while from '../input_examples/do_while.json';
 import expression from '../input_examples/expression.json';
-import {getChartConfig} from './visualize';
+import {getChartConfig, getIntermediateChartConfig} from './visualize';
 import {convertNodeObject} from './convertIC';
 import {cleanUp} from './intercleanup';
 
@@ -24,16 +24,22 @@ import {cleanUp} from './intercleanup';
         };
         console.log("File has been created");
     });*/
-let output = convertAll(if_else);
+
+let input_json = for_loop;
+
+let output = convertAll(input_json);
 // console.log(JSON.stringify(output, null, 2))
 let cleanInter = cleanUp(output);
 console.log(JSON.stringify(cleanInter, null, 2))
 let icout = convertNodeObject(cleanInter);
 console.log(icout);
 //let output = while_loop;
-var chart_config = getChartConfig(if_else);
-// console.log(JSON.stringify(chart_config, null,  2));
+var chart_config = getChartConfig(input_json);
 new Treant(chart_config);
+console.log("output");
+console.log(output);
+var ir_chart_config = getIntermediateChartConfig(output);
+new Treant(ir_chart_config);
 
 document.getElementById('icg-pane').innerText = icout;
 document.getElementById('icg-pane').setAttribute("align","center");

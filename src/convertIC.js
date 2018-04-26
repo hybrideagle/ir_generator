@@ -8,10 +8,10 @@ import {GenLabel, genTemp} from "./utils";
  *  @return       An array of nodes repesenting the simplified construct
  */
 
-function convertNodeIC(node){
+function convertNodeIC(node) {
     var generatedIC = "";
     // console.log(node.type);
-    switch(node.type){
+    switch (node.type) {
         case 'Identifier':
             generatedIC = node.name;
             break;
@@ -19,37 +19,39 @@ function convertNodeIC(node){
             generatedIC = node.value;
             break;
         case 'EmptyStatement':
-            generatedIC = '.....'
-            ;
+            generatedIC = '.....';
+            break;
+        case 'SingleAssignmentExpression':
+            generatedIC = convertNodeIC(node.target) + '=' + convertNodeIC(node.operand1);
             break;
         case 'LabeledStatement':
-            if(!node.inherited){
+            if (!node.inherited) {
                 generatedIC = node.label + ": ";
             }
             generatedIC += '\n\t';
             generatedIC += convertNodeIC(node.body);
             // console.log("DEBUG:", generatedIC);
-            break
-            ;
+            break;
         case 'SingleAssignmentExpression':
-            generatedIC = convertNodeIC(node.target) + " = " + convertNodeIC(node.operand1);
-            break
-            ;
+            generatedIC = node.target + " = " + node.operand1;
+            break;
+        case 'UnaryExpression':
+            generatedIC = convertNodeIC(node.argument) + node.operator;
+            break;
         case 'Sequence':
             var tempIC = node.statements.map(entry => convertNodeIC(entry));
             var i;
-            for(i = 0;i < tempIC.length;i++){
+            for (i = 0; i < tempIC.length; i++) {
                 // console.log("DEBUG:", tempIC[i]);
                 generatedIC += tempIC[i];
                 // console.log("DEBUG GEN:", generatedIC);
                 generatedIC += '\n';
             }
-            break;
-            ;
+            break;;
         case 'SequenceExpression':
             var tempIC = node.statements.map(entry => convertNodeIC(entry));
             var i;
-            for(i = 0;i < tempIC.length;i++){
+            for (i = 0; i < tempIC.length; i++) {
                 // console.log("DEBUG:", tempIC[i]);
                 generatedIC += tempIC[i];
                 // console.log("DEBUG GEN:", generatedIC);
@@ -61,8 +63,7 @@ function convertNodeIC(node){
             break;
         case 'GotoStatement':
             generatedIC = "goto " + node.label;
-            break;
-            ;
+            break;;
         case 'IfGotoStatement':
             generatedIC = "if " + convertNodeIC(node.test) + " goto " + node.label;
             break;
@@ -78,8 +79,8 @@ function convertNodeIC(node){
             break;
     }
     return generatedIC;
- }
+}
 
- export function convertNodeObject(node){
+export function convertNodeObject(node) {
     return convertNodeIC(node);
- }
+}

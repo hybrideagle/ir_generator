@@ -6,16 +6,8 @@
         "name": "i"
     },
     "right": {
-        "type": "BinaryExpression",
-        "left": {
-            "type": "Identifier",
-            "name": "i"
-        },
-        "right": {
             "type": "Literal",
             "kind": "int",
             "value": "1"
-        },
-        "operator": "+"
-    }
+        }
 }

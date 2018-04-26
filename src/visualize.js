@@ -30,6 +30,29 @@ export function getChartConfig(node) {
     };
 }
 
+
+// Convert the input JSON to a TreeModel object
+export function getIntermediateChartConfig(node) {
+    return {
+        chart: {
+            container: "#output",
+            rootOrientation: "NORTH",
+
+            node: {
+                HTMLclass: "node"
+            },
+            connectors: {
+                type: "straight",
+                style: {
+                    "stroke-width": 1,
+                    "stroke": "#ccc"
+                }
+            }
+        },
+        nodeStructure: getNodeStructure(node)
+    };
+}
+
 function getNodeStructure(node) {
     switch (node.type) {
         case "Identifier":

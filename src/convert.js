@@ -63,11 +63,69 @@ import {GenLabel, genTemp} from "./utils";
      }
  }
 
+ export function convertForStatement(node) {
+
+     assert.ok(node.type == 'ForStatement', node.type, "invalid node type(Assign expected)");
+
+     let initial= {
+           type:"SingleAssignmentExpression",
+           target: node.init.left,
+           operand1: node.init.right
+
+     }
+     let ifGuard = {
+         type: "LabeledStatement",
+         body: {
+             type: "IfGotoStatement",
+             test: node.test,
+             label: null
+         },
+         label: GenLabel(),
+         inherited: false
+     };
+     let topGoto = {
+         type: "GotoStatement",
+         label: null
+     }
+     let body = {
+         type: "LabeledStatement",
+         label: GenLabel(),
+         body: convertAll(node.body),
+         inherited: false
+     }
+     ifGuard.body.label = body.label;
+     let inc={
+       type :"UnaryExpression",
+       operator : node.update.operator,
+       argument : node.update.argument,
+
+       prefix :  node.update.prefix
+     }
+     let endGoto = {
+         type: "GotoStatement",
+         label: ifGuard.label
+     }
+     let loopExit = {
+         type: 'LabeledStatement',
+         label: GenLabel(),
+         body: {
+             type: "EmptyStatement"
+         },
+         inherited: false
+     }
+     topGoto.label = loopExit.label;
+
+     return {
+         type: "SequenceExpression",
+         statements: [initial, ifGuard, topGoto, body, inc, endGoto, loopExit]
+     }
+ }
+
  export function convertDoWhileStatement(node) {
 
      assert.ok(node.type == 'DoWhileStatement', node.type, "invalid node type(Assign expected)");
 
-     
+
      let body = {
          type: "LabeledStatement",
          label: GenLabel(),
