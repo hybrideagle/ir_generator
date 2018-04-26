@@ -11,19 +11,19 @@ import {convertNodeObject} from './convertIC';
 import {cleanUp} from './intercleanup';
 import {cleanupGenerators} from './utils.js';
 
-function display(input_json){
+function display(input_obj){
     cleanupGenerators();
     $("#basic-example").innerHTML = "";
     $("#output").innerHTML = "";
     $("#icg-pane").innerHTML = "";
-    let output = convertAll(input_json);
+    let output = convertAll(input_obj);
     // console.log(JSON.stringify(output, null, 2))
     let cleanInter = cleanUp(output);
     console.log(JSON.stringify(cleanInter, null, 2))
     let icout = convertNodeObject(cleanInter);
     console.log(icout);
     //let output = while_loop;
-    var chart_config = getChartConfig(input_json);
+    var chart_config = getChartConfig(input_obj);
     new Treant(chart_config);
     console.log("output");
     console.log(output);
