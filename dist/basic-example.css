@@ -6,11 +6,6 @@
     display: flex;
 }
 
-#container {
-    text-align:center;
-    width: 100%;
-    margin-top: 50px;
-}
 #chart-container {
     text-align:center;
     width: 80%;
@@ -29,7 +24,7 @@
     text-align:left;
     width: 90%;
     margin: 0 auto;
-    
+
 }
 
 #spacer {
@@ -43,8 +38,8 @@
 }
 
 .toolbar {
+    text-align: center;
     width: 100%;
-    border: solid black;
 }
 
 .icg-pane {

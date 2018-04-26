@@ -5,28 +5,40 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="Treant.css">
     <link rel="stylesheet" href="basic-example.css">
+
+    <link rel="stylesheet" href="materialize.min.css">
+    <script src="materialize.min.js"></script>
+
     <script src="raphael.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
     <script src="Treant.js"></script>
 
 </head>
 
 <body>
     <div id='container'>
-        <div id='toolbar'>Toolbar goes here</div>
-       <div id="content-container">
-        	<div id="chart-container">
-            		<div class="chart" id="basic-example">
-            		</div>
-            		<div class="chart" id="output">
-            		</div>
-	   	</div>
-	    	<div class="icg-container" id="icg-container">
-		   	 <div class="spacer" id="spacer">
-		   	 </div>
-		   	 <div class="icg-pane" id="icg-pane">
-		  	        Generated Code goes here 
-		  	  </div>
-            	</div>
+        <div id='toolbar' class="toolbar row">
+            <input type="button" value="for" id="for" class="waves-effect waves-light btn"></input>
+            <input type="button" value="while" id="while" class="waves-effect waves-light btn"></input>
+            <input type="button" value="do_while" id="do_while" class="waves-effect waves-light btn"></input>
+            <input type="button" value="expression" id="expression" class="waves-effect waves-light btn"></input>
+            <input type="button" value="if_else" id="if_else" class="waves-effect waves-light btn"></input>
+            <input type="button" value="assign_expr" id="assign_expr" class="waves-effect waves-light btn"></input>
+        </div>
+        <div id="content-container" class="row">
+            <div id="chart-container" class="col s8" style="text-align:left">
+                <div class="chart" id="basic-example">
+                </div>
+                <div class="chart" id="output">
+                </div>
+            </div>
+            <div class="icg-container" id="icg-container" class="col s4 row">
+                <div class="spacer col s1" id="spacer">
+                </div>
+                <div class="icg-pane col s11" id="icg-pane">
+                    Generated Code goes here
+                </div>
+            </div>
         </div>
 
     </div>

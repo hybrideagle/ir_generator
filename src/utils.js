@@ -1,27 +1,32 @@
 var labelCount = 0;
 var tempCount = 0;
+
+export function cleanupGenerators() {
+    labelCount = 0;
+    tempCount = 0;
+}
 /**
  *  Create a new label
  *  @param  name Custom label name, optional
  *  @return      A string
  */
-function GenLabel(name) {
+export function GenLabel(name) {
     if (name == null)
         return `L${labelCount++}`;
     else
         return name;
     }
 
-function genTemp(name) {
+export function genTemp(name) {
     let temp = {
         type: "Identifier",
         name: null
     }
     if (name == null)
-        temp.name =`t${tempCount++}`;
+        temp.name = `t${tempCount++}`;
     else
         temp.name = name;
-    return temp;    
+    return temp;
 }
 
 function gen(...args) {
@@ -36,6 +41,3 @@ function gen(...args) {
     );
     return args.join("");
 }
-
-exports.genTemp = genTemp;
-exports.GenLabel = GenLabel;
