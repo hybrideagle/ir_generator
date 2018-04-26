@@ -16,7 +16,7 @@
     width: 30%;
     margin-left: 30px;
     display: flex;
-    border: solid red;
+//    border: solid red;
 
 }
 
@@ -24,7 +24,7 @@
     text-align:left;
     width: 90%;
     margin: 0 auto;
-
+    margin-top:5em;
 }
 
 #spacer {
@@ -33,7 +33,7 @@
 }
 
 .chart {
-    border: solid blue;
+//    border: solid blue;
     height: 50%;
 }
 
